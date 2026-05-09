@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Master {
 
-  apiURl: string = 'https://projectapi.gerasim.in/api/BusBooking/'
+export class Master {
 
   constructor(private http: HttpClient) {}
 
@@ -15,4 +14,7 @@ export class Master {
     return this.http.get<any[]>(`api/GetBusLocations`);
   }
 
+  searchBuses(from: number, to: number, date: string): Observable<any[]> {
+    return this.http.get<any[]>(`api/searchBus?fromLocation=${from}&toLocation=${to}&travelDate=${date}`);
+  }
 }
